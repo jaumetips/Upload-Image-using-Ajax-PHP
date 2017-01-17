@@ -70,9 +70,6 @@ else{
   echo "<span id='invalid'>***Invalid file Size or Type***<span>";
   }
 
-
-
-
 }
 
 

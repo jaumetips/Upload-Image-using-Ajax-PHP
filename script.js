@@ -6,7 +6,7 @@ var imagefile = file.type;
 var match= ["image/jpeg","image/png","image/jpg"];
 if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2])))
 {
-$('#previewing2').attr('src','upload/noimage.png');
+$('#previewing' + id).attr('src','upload/noimage.png');
 $("#message").html("<p id='error'>Please Select A valid Image File</p>"+"<h4>Note</h4>"+"<span id='error_message'>Only jpeg, jpg and png Images type allowed</span>");
 return false;
 }
@@ -19,6 +19,7 @@ reader.readAsDataURL(file);
 }
 
 }
+
 function imageIsLoaded(id, e) {
 $("#file" + id).css("color","green");
 $('#image_preview'+ id).css("display", "block");
@@ -36,6 +37,8 @@ $('#loading').show();
 var pos2 = $("#pos").val();
 var form = $('form')[pos];
 var formData = new FormData(form);
+
+
 $.ajax({
 url: "ajax_php_file.php", 
 type: "POST",             
@@ -47,8 +50,22 @@ success: function(data)   // A function to be called if request succeeds
 {
 $('#loading').hide();
 $("#message").html(data);
+
+setTimeout(
+function() 
+{
+location.reload();
+}, 0001); 
+
+
+            
+
+
 }
 });
+
+   
+
 }
 
 
@@ -70,6 +87,15 @@ success: function(data)   // A function to be called if request succeeds
 {
 $('#loading').hide();
 $("#message").html(data);
+
+setTimeout(
+function() 
+{
+location.reload();
+}, 0001);    
+  
+
+
 }
 
 });
